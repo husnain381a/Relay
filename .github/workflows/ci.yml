@@ -1,0 +1,135 @@
+name: Relay checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      run_cloud_tests:
+        description: 'Write test workspaces/messages to the dedicated integration backend using existing test accounts'
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: relay-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  web:
+    name: Web, PostgreSQL semantics, and browser setup
+    runs-on: windows-latest
+    timeout-minutes: 30
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+      NEXT_PUBLIC_SUPABASE_URL: ''
+      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ''
+      NEXT_PUBLIC_APP_URL: http://127.0.0.1:3000
+      TEST_ALLOW_WRITES: 'false'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7, verified 2026-10-28
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - name: Install locked dependencies without lifecycle scripts
+        run: npm ci --ignore-scripts
+      - name: Generate Next.js route types
+        run: npm exec -- next typegen
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Unit and security tests
+        run: npm test
+      - name: PostgreSQL migrations, grants and RLS tests in PGlite
+        run: npm run test:db
+      - name: Production build without tenant data
+        run: npm run build
+      - name: Verify runner-provided Edge
+        shell: pwsh
+        run: |
+          $relayEdgePaths = @("${env:ProgramFiles(x86)}\Microsoft\Edge\Application\msedge.exe", "$env:ProgramFiles\Microsoft\Edge\Application\msedge.exe")
+          if (-not ($relayEdgePaths | Where-Object { Test-Path -LiteralPath $_ })) { throw 'This workflow expects Microsoft Edge on the Windows runner. Use a Windows image with Edge or explicitly install Playwright msedge.' }
+      - name: Browser setup, responsive and keyboard smoke
+        run: npm run test:e2e
+      - name: Runtime dependency audit
+        run: npm audit --omit=dev --audit-level=moderate
+      - name: Retain browser test evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: web-test-evidence
+          path: |
+            playwright-report/
+            test-results/
+            docs/screenshots/
+          if-no-files-found: ignore
+          retention-days: 7
+
+  desktop:
+    name: Desktop security and credential-vault tests
+    runs-on: windows-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: desktop
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: desktop/package-lock.json
+      - name: Install locked desktop dependencies without lifecycle scripts
+        run: npm ci --ignore-scripts
+      - name: Desktop security and vault tests
+        run: npm test
+      - name: Runtime dependency audit
+        run: npm audit --omit=dev --audit-level=moderate
+      # No unsigned installer is published, and release credentials are never used.
+
+  cloud-integration:
+    name: Explicitly authorized real backend integration
+    if: github.event_name == 'workflow_dispatch' && inputs.run_cloud_tests
+    runs-on: windows-latest
+    timeout-minutes: 30
+    environment: integration
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+      NEXT_PUBLIC_APP_URL: http://127.0.0.1:3000
+      TEST_ALLOW_WRITES: 'true'
+      TEST_SUPABASE_URL: ${{ secrets.TEST_SUPABASE_URL }}
+      TEST_SUPABASE_KEY: ${{ secrets.TEST_SUPABASE_KEY }}
+      TEST_USER_A_EMAIL: ${{ secrets.TEST_USER_A_EMAIL }}
+      TEST_USER_A_PASSWORD: ${{ secrets.TEST_USER_A_PASSWORD }}
+      TEST_USER_B_EMAIL: ${{ secrets.TEST_USER_B_EMAIL }}
+      TEST_USER_B_PASSWORD: ${{ secrets.TEST_USER_B_PASSWORD }}
+      TEST_USER_C_EMAIL: ${{ secrets.TEST_USER_C_EMAIL }}
+      TEST_USER_C_PASSWORD: ${{ secrets.TEST_USER_C_PASSWORD }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - name: Refuse incomplete integration configuration
+        shell: pwsh
+        run: |
+          $relayRequired = 'TEST_SUPABASE_URL','TEST_SUPABASE_KEY','TEST_USER_A_EMAIL','TEST_USER_A_PASSWORD','TEST_USER_B_EMAIL','TEST_USER_B_PASSWORD'
+          foreach ($relayName in $relayRequired) { if (-not [Environment]::GetEnvironmentVariable($relayName)) { throw "Missing integration environment secret: $relayName" } }
+      - run: npm ci --ignore-scripts
+      - name: Real authenticated two-user collaboration and isolation
+        run: npm run test:e2e -- tests/e2e/real-backend.spec.ts
+      # Tests deliberately keep their named [e2e] workspace for failure inspection.
+      # Do not upload authenticated browser sessions or credential-bearing traces.

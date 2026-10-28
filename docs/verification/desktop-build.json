@@ -1,0 +1,42 @@
+{
+  "builtAt": "2026-10-28T15:06:06.002Z",
+  "artifact": "Relay-Setup-0.1.0-x64.exe",
+  "bytes": 121541393,
+  "sha256": "18f4b36114e0cf262cf4faf8e1d056125f3b1f97811cee77c969691f703c9046",
+  "kind": "unsigned-validation-installer",
+  "applicationOriginConfigured": false,
+  "sourceMatchesPackage": true,
+  "runtimeSourceSha256": {
+    "main.cjs": "76044d46130628ad22904299b28e2716d09a79c654887eab2cc423a88744a244",
+    "preload.cjs": "3ee98530ad017795aad5291cb91184332863eb70dd0965f36b7a3089ebbe0fef",
+    "security.cjs": "0df2f26682ec5edbd248c626245c7a6bece56a2c6857529c49b253d28da51815",
+    "credentials.cjs": "f5f69429287c3e6b750b4f731ed27717fd98b3c23225244511aeec12f6d5dbb4",
+    "config.json": "bbbd0a8da790ccaa58e654fd4553fcf8c1d4e4c23a3dbc56c467d38d0eeacdb3"
+  },
+  "unitTests": {
+    "passed": 8,
+    "failed": 0
+  },
+  "packagedSmoke": {
+    "version": "0.1.0",
+    "packaged": true,
+    "url": "relay-internal://setup/",
+    "sandbox": true,
+    "contextIsolation": true,
+    "nodeIntegration": false,
+    "configured": false,
+    "encryptedCredentialsAvailable": true,
+    "credentialRoundTrip": true,
+    "renderer": {
+      "nodeRequire": "undefined",
+      "nodeProcess": "undefined",
+      "desktopBridge": true
+    }
+  },
+  "releaseGates": [
+    "Verified hosted application origin",
+    "Real hosted authenticated desktop workflow tests",
+    "Signed certificate and update feed",
+    "Disposable-VM install/uninstall/startup/notification/update tests"
+  ]
+}

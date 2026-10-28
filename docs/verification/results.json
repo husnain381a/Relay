@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-29",
+  "typecheck": "pass",
+  "productionBuild": "pass",
+  "unitTests": 98,
+  "databaseGroups": 45,
+  "migrations": 7,
+  "browserPassed": 16,
+  "cloudTestsSkipped": 5,
+  "desktopTests": 8,
+  "dependencyKnownVulnerabilities": 0,
+  "productionReleased": false,
+  "blocking": [
+    "Dedicated Supabase project configuration/migration access",
+    "Hosting connection",
+    "Hosted multi-user validation",
+    "Signed desktop release qualification"
+  ]
+}

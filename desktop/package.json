@@ -1,0 +1,35 @@
+{
+  "name": "relay-desktop",
+  "productName": "Relay",
+  "version": "0.1.0",
+  "description": "Relay team collaboration desktop client",
+  "author": "Relay Contributors",
+  "private": true,
+  "main": "main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test tests/*.test.cjs",
+    "smoke": "node scripts/smoke.cjs",
+    "build": "node scripts/release.cjs",
+    "build:validation": "electron-builder --win nsis --x64 --publish never",
+    "pack": "electron-builder --win --x64 --dir --publish never"
+  },
+  "dependencies": {
+    "electron-updater": "6.8.11"
+  },
+  "devDependencies": {
+    "electron": "45.1.0",
+    "electron-builder": "26.18.0"
+  },
+  "build": {
+    "appId": "com.relay.collaboration",
+    "productName": "Relay",
+    "artifactName": "Relay-Setup-${version}-${arch}.${ext}",
+    "directories": {"output": "release", "buildResources": "assets"},
+    "files": ["*.cjs", "config.json", "assets/**", "node_modules/**", "!tests/**", "!scripts/**"],
+    "asar": true,
+    "protocols": [{"name": "Relay conversation link", "schemes": ["relay"]}],
+    "win": {"target": [{"target": "nsis", "arch": ["x64"]}], "icon": "assets/icon.ico", "signExecutable": false},
+    "nsis": {"oneClick": false, "perMachine": false, "allowToChangeInstallationDirectory": true, "createDesktopShortcut": true, "createStartMenuShortcut": true, "shortcutName": "Relay", "deleteAppDataOnUninstall": false}
+  }
+}
