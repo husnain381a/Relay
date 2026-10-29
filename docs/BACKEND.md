@@ -39,3 +39,5 @@ The report should show `publicChannelsAllowed: false` with an explicit denial, n
 Supabase's MCP migration API assigned server-side timestamps different from the original CLI-generated local filenames. See `docs/verification/supabase-project.json` for local-file-to-hosted-name mapping and `supabase-migrations.json` for actual hosted versions. Do not blindly run `supabase db push` against this project: reconcile the migration history using the current CLI's documented migration-repair workflow first. Do not reapply the initial schema.
 
 Deployment, authenticated multi-user validation, SMTP, automatic scheduling, and signed desktop releases remain separate release gates. The existing desktop validation installer still shows setup until a deployed HTTPS app origin is provided.
+
+Native EXE packaging is now deferred at the user's request; the current target is the web/PWA. The latest security review and actual open settings are in ../SECURITY.md.

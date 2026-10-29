@@ -94,6 +94,7 @@ describe("media service sequencing (isolated client contract tests, not hosted S
   it("publishes the new path before removing a previous own avatar", async () => {
     const old = avatarMediaPath(A, OTHER, "png"); const fx = fakeClient({ oldPath: old });
     const result = await createProfileMedia(fx.client).uploadAvatar(png());
+    expect(fx.upload).toHaveBeenCalledWith(expect.any(String), expect.any(File), expect.objectContaining({ cacheControl: "0" }));
     expect(fx.rpc).toHaveBeenCalledWith("set_avatar", expect.objectContaining({ p_path: expect.stringMatching(new RegExp(`^avatars/${A}/`)) }));
     expect(fx.remove).toHaveBeenCalledWith([old]);
     expect(fx.remove.mock.invocationCallOrder[0]).toBeGreaterThan(fx.rpc.mock.invocationCallOrder[0]);

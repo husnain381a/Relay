@@ -2,7 +2,7 @@
   "date": "2026-10-29",
   "typecheck": "pass",
   "productionBuild": "pass with Relay project configuration",
-  "unitTests": 98,
+  "unitTests": 104,
   "databaseGroups": 45,
   "migrations": 8,
   "browserPassed": 15,
@@ -13,8 +13,7 @@
   "blocking": [
     "Disable Realtime public channels and verify Auth callback allowlist",
     "Hosting connection",
-    "Hosted multi-user validation",
-    "Signed desktop release qualification"
+    "Hosted multi-user validation"
   ],
   "backendProject": "qiidmrxekvdqjfeoqhgt",
   "backendConfigured": true,
@@ -23,5 +22,7 @@
   "relationshipFix": "Explicit PostgREST foreign-key joins; original PGRST201 reproduced and corrected query paths verified",
   "pwaBrowserPassed": 11,
   "browserFailed": 1,
-  "developmentStartupIssue": "Intermittent JSON/script parsing in Next development mode; final production PWA checks pass"
+  "developmentStartupIssue": "Intermittent JSON/script parsing in Next development mode; final production PWA checks pass",
+  "nativeExeRelease": "deferred by user",
+  "securityReview": "See SECURITY.md"
 }

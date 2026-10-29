@@ -171,6 +171,7 @@ export function MessageCard({
           <>
             <div className="markdown">
               <ReactMarkdown
+                skipHtml
                 remarkPlugins={[remarkGfm]}
                 components={{
                   a: (props) =>

@@ -1,5 +1,7 @@
 # Relay engineering guide
 
+Current release focus: web/PWA. Native EXE builds and publication are deferred at the user's request. Do not commit installers, signing keys or local environment files.
+
 Build incrementally. No production seed/demo data. All authorization belongs in PostgreSQL RLS and verified server sessions. Never expose privileged Supabase keys. Keep dependency versions exact and commit the lockfile. Every claim in docs must distinguish implemented, tested locally, tested against Supabase, and release-blocked.
 
 Use Next.js App Router, TypeScript, Supabase, Tailwind, Zod, Radix primitives and Electron. Core source is src/. Database owner writes supabase/. Desktop owner writes desktop/. API owner writes src/lib/, src/proxy.ts, src/app/auth/, src/app/api/, tests/ (except browser tests). Main owner writes application UI, config, package.json and docs/. Coordinate contracts before changing shared files.

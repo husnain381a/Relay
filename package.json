@@ -15,9 +15,8 @@
     "test:e2e": "playwright test",
     "test:pwa": "playwright test --config=playwright.pwa.config.ts",
     "prepare:standalone": "node scripts/prepare-standalone.mjs",
-    "check": "npm run typecheck && npm test && npm run build",
-    "desktop:build": "npm --prefix desktop run build",
-    "desktop:validation": "npm --prefix desktop run build:validation"
+    "security:repo": "node scripts/check-repository.mjs",
+    "check": "npm run typecheck && npm test && npm run build"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "1.3.1",

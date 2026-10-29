@@ -34,11 +34,14 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7, verified 2026-10-28
         with:
           persist-credentials: false
+          fetch-depth: 0
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
           node-version: '24'
           cache: npm
           cache-dependency-path: package-lock.json
+      - name: Check source history for credentials and installer artifacts
+        run: npm run security:repo
       - name: Install locked dependencies without lifecycle scripts
         run: npm ci --ignore-scripts
       - name: Generate Next.js route types
@@ -75,30 +78,6 @@ jobs:
             docs/screenshots/
           if-no-files-found: ignore
           retention-days: 7
-
-  desktop:
-    name: Desktop security and credential-vault tests
-    runs-on: windows-latest
-    timeout-minutes: 15
-    defaults:
-      run:
-        working-directory: desktop
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-        with:
-          persist-credentials: false
-      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
-        with:
-          node-version: '24'
-          cache: npm
-          cache-dependency-path: desktop/package-lock.json
-      - name: Install locked desktop dependencies without lifecycle scripts
-        run: npm ci --ignore-scripts
-      - name: Desktop security and vault tests
-        run: npm test
-      - name: Runtime dependency audit
-        run: npm audit --omit=dev --audit-level=moderate
-      # No unsigned installer is published, and release credentials are never used.
 
   cloud-integration:
     name: Explicitly authorized real backend integration

@@ -151,7 +151,7 @@ export function createProfileMedia(client: SupabaseClient, { storageOrigin = pub
   }
   async function publish<T>(file: File, path: string, rpcName: string, args: Record<string, unknown>) {
     const metadata = await validateProfileImage(file);
-    const uploaded = await storage().upload(path, file, { upsert: false, contentType: metadata.mime, cacheControl: "60" });
+    const uploaded = await storage().upload(path, file, { upsert: false, contentType: metadata.mime, cacheControl: "0" });
     check(uploaded.error, "The image could not be uploaded.");
     const saved = await client.rpc(rpcName, args);
     if (saved.error || !saved.data) {

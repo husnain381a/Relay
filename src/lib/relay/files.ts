@@ -26,7 +26,7 @@ export function createFiles(getClient: ClientFactory) {
         .upload(path, file, {
           upsert: false,
           contentType: file.type,
-          cacheControl: "3600",
+          cacheControl: "0",
         });
       checkError(uploadError);
       const { data, error } = await client

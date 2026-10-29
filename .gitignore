@@ -14,3 +14,11 @@ desktop/runtime-config.json
 .DS_Store
 supabase/.temp/
 work/
+*.exe
+*.msi
+*.msix
+*.appx
+*.pfx
+*.p12
+*.pem
+*.key

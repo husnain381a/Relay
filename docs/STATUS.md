@@ -7,7 +7,7 @@ Updated 2026-10-29 (Asia/Karachi). **The app is connected to the dedicated Relay
 | Check | Result |
 | --- | --- |
 | TypeScript / production build | Pass; Next.js 16.4.3 webpack |
-| Unit/service tests | 98 pass across 12 files |
+| Unit/service tests | 104 pass across 13 files |
 | Database | 45 authorization/persistence groups pass across all 8 migrations in PGlite PostgreSQL |
 | Production PWA | 11 Edge checks pass, including 375/768/1440px layouts, install events, metadata, real offline worker and cache privacy |
 | Development browser suite | Latest full run: 15 pass, 1 intermittent startup failure; five hosted journeys skipped. Dev server logged JSON parsing errors; production PWA checks pass. |
@@ -15,7 +15,7 @@ Updated 2026-10-29 (Asia/Karachi). **The app is connected to the dedicated Relay
 | Hosted collaboration | 5 authenticated collaboration tests remain unrun; no real-user passes claimed |
 | Dependency audit | Zero known web production/development vulnerabilities at final audit |
 | Desktop | 8 security/vault tests pass; packaged sandbox/isolation/DPAPI smoke passed |
-| Installer | Unsigned x64 NSIS validation installer built; signing and clean-machine installation still pending |
+| Installer | Native EXE releases deferred by user; no installer committed or published |
 | Infrastructure | CI/Docker/deployment configuration supplied; remote CI/container/cloud deployment not run |
 
 PGlite executes actual application SQL, constraints, roles and RLS with Supabase-owned platform interfaces shimmed. Browser editor/image tests use explicitly development-gated fixtures without a backend. Neither proves hosted Auth/Storage/WebSocket behavior. Fixture routes return 404 in production.
@@ -44,10 +44,12 @@ PGlite executes actual application SQL, constraints, roles and RLS with Supabase
 2. Connect hosting, deploy and verify real workflows. Enable scheduler/monitoring/backups/retention. Logs and health checks exist; Sentry SDK/alert delivery remains unimplemented.
 3. Measure concurrency, query plans, accessibility and devices with real records. Latency/load budgets are targets, not achieved SLOs. Large histories need bounded thread-summary profiling.
 4. Configure aggregate storage quotas and orphan/retention automation; per-file limits and own-image cleanup already exist. Run restore drills.
-5. Pin the deployed HTTPS origin in desktop, provide signing/update credentials, rebuild and verify clean-machine installation and signed updates.
+Native EXE builds are deferred and are no longer a release gate for this web/PWA scope. Historical desktop source/evidence is retained.
 
 Additional limits: editor formatting follows its enabled schema; pending File objects remain page-local. Draft sync is debounced and last-write-wins across devices; unchanged retries preserve IDs within the browser session. Text forwarding does not copy original attachments. The emoji set is curated. Channel/user search uses loaded authorized workspace records. Optional email notifications are absent. Presence is conversation-scoped and multi-tab closing can transiently clear presence.
 
 Session revocation may leave existing access tokens valid until expiry. RLS revokes tenant reads immediately; versioned topics stop future activity on old topics after removal, with hosted timing still unverified. Issued signed URLs remain valid for their 60-second TTL; downloaded content cannot be recalled.
 
 See README.md and docs/{DATABASE,TESTING,DEPLOYMENT,OPERATIONS,MEDIA,DESKTOP}.md for setup and exact boundaries. No local check is presented as a production-ready service guarantee.
+
+Latest security review: see ../SECURITY.md. Hosted RLS/private-storage/anonymous-denial checks pass. Public Realtime remains enabled and the advisor reports leaked-password protection disabled; no paid upgrade or Auth setting change was performed.

@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-29",
+  "projectRef": "qiidmrxekvdqjfeoqhgt",
+  "scope": "web/PWA; native EXE releases deferred",
+  "local": {
+    "unitServiceTestsPassed": 104,
+    "databaseAuthorizationGroupsPassed": 45,
+    "pwaProductionBrowserTestsPassed": 11,
+    "productionBuild": "pass",
+    "productionDependencyKnownVulnerabilities": 0,
+    "historicalAndStagedBlobsScanned": 202,
+    "credentialAndInstallerPatternFindings": 0
+  },
+  "hosted": {
+    "publicProductTablesWithoutRls": 0,
+    "anonymousApplicationTableGrants": 0,
+    "publicStorageBuckets": 0,
+    "publicSecurityDefinerFunctions": 0,
+    "publicKeyChecksPassed": 5,
+    "realtimePublicChannelsAllowed": true,
+    "leakedPasswordProtectionEnabled": false,
+    "authenticatedCrossTenantJourneyVerified": false
+  },
+  "boundaries": {
+    "endToEndEncryption": false,
+    "deployedHttpsOriginVerified": false,
+    "paidUpgradePerformed": false,
+    "previousUploadCacheMetadataRewritten": false
+  },
+  "remaining": [
+    "Disable public Realtime channels in dashboard",
+    "Review server-side Auth password policy; leaked-password protection requires Pro or above",
+    "Verify hosted multi-user access, HTTPS origin and deployment controls"
+  ]
+}

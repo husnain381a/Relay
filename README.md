@@ -1,6 +1,6 @@
 # Relay
 
-A Slack-inspired team messenger built with Next.js, TypeScript, Supabase and Electron. Original visual identity; no voice/video/screen sharing. Production code contains no sample accounts, workspaces or messages.
+A Slack-inspired team messenger built with Next.js, TypeScript, Supabase and an installable PWA. Original visual identity; no voice/video/screen sharing. Production code contains no sample accounts, workspaces or messages.
 
 **Status: connected to the dedicated Relay backend; not production released.** All eight migrations are applied to **relay-web** in the **Relay** organization, and the local app is configured. The production build and hosted public-key/authorization smoke checks pass. Dashboard Realtime public-channel access must still be disabled and Auth callback URLs verified; authenticated collaboration, SMTP, hosting and signed desktop qualification remain pending. See [backend configuration](docs/BACKEND.md) and [feature status](docs/STATUS.md).
 
@@ -49,7 +49,6 @@ npm test
 npm run test:db
 npm run build
 npm run test:e2e
-npm --prefix desktop test
 ```
 
 The SQL suite runs real PostgreSQL through PGlite, with minimal Auth/Storage/Realtime schema shims. It does **not** run GoTrue, the object-storage HTTP service or real sockets. The default browser suite tests the honest unconfigured app at desktop/mobile sizes. Separate real-backend tests are gated on explicit credentials and test-write authorization. See [test instructions and limits](docs/TESTING.md).
@@ -60,19 +59,11 @@ Webpack is selected explicitly because Turbopack’s PostCSS worker failed insid
 
 Persisting a scheduled message and dispatching it are separate operations. Configure an actual scheduler to call `/api/cron/scheduled` with `Authorization: Bearer <CRON_SECRET>` once per minute, or configure a database-owned pg_cron job as described in deployment notes. The HTTP dispatcher requires a random `CRON_SECRET` of at least 32 characters and a server-only `SUPABASE_SECRET_KEY`. Neither is required for normal messaging. A scheduled message is **not promised to send automatically** until the dispatcher is deployed and verified. Failed dispatches remain visible in Later with a reason and cancellation action.
 
-## Windows application
+## Release focus and security
 
-Source is in `desktop/`. The client includes sandboxed rendering, constrained native notifications, tray, startup preference, validated deep links, download handling, secure Windows credential encryption and guarded update support.
+This release targets the web application and installable PWA. Native EXE packaging and publication are deferred; the historical desktop source remains for reference. No EXE or signing credential is included in Git, and desktop build jobs are disabled.
 
-`desktop/release/Relay-Setup-0.1.0-x64.exe` is an **unsigned validation installer**. The packaged executable passed a hidden sandbox/encryption smoke check. Without a deployed app origin it shows a setup screen. It is not a finished production desktop release. It has not been installed on a clean Windows machine; signing and update-feed verification remain pending.
-
-```powershell
-npm --prefix desktop ci
-npm --prefix desktop test
-npm run desktop:validation
-```
-
-For the production installer, configure the pinned HTTPS origin, signing certificate and HTTPS update feed, then follow [desktop release instructions](docs/DESKTOP.md). The production build refuses missing required release settings.
+Read [SECURITY.md](SECURITY.md) for verified access controls, encryption boundaries and the remaining hosted security settings. Messages are not end-to-end encrypted. Run `npm run security:repo` to inspect Git history and staged files for credential/installer patterns.
 
 ## Repository map
 
@@ -84,7 +75,7 @@ For the production installer, configure the pinned HTTPS origin, signing certifi
 | `supabase/migrations` | Canonical schema, RLS, authorized RPCs, storage and real-time policies |
 | `tests` | Unit/service-boundary, public browser and gated real-backend tests |
 | `scripts` | Actual SQL security tests and explicitly gated load test |
-| `desktop` | Electron native source, security tests, packaging and release evidence |
+| `desktop` | Archived native source; outside the current web/PWA release |
 | `docs` | Architecture, feature status, database, testing, deployment and operations |
 
 ## Product behavior
