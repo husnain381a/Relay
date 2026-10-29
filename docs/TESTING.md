@@ -8,7 +8,7 @@ The 2026-10-29 continuation adds collection range/sentinel tests, a full saved i
 
 `npm run test:db` executes the actual migrations in an isolated PostgreSQL-compatible PGlite database with representative Supabase auth/storage/realtime schemas. It tests real SQL constraints, privileges, RLS and RPCs under distinct database roles. Supabase platform internals are stubbed in this harness: passing these tests does not establish that managed Auth, Storage HTTP, WAL replication or WebSocket authorization works in Supabase Cloud.
 
-The authenticated Playwright suite and load exercise are included but have **not run against a real Supabase project** in this session. The available account's free-project quota prevented a dedicated project from being provisioned. Never describe gated/skipped tests as a passing end-to-end product validation.
+The authenticated Playwright suite and load exercise are included but have **not run against a real Supabase project** in this session. The dedicated Relay project is now migrated and connected. Five public-key hosted smoke checks pass; authenticated test accounts have not been supplied. Never describe gated/skipped tests as a passing end-to-end product validation.
 
 ## Commands
 

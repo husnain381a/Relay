@@ -1,0 +1,57 @@
+{
+  "projectRef": "qiidmrxekvdqjfeoqhgt",
+  "organization": "Relay",
+  "projectName": "relay-web",
+  "url": "https://qiidmrxekvdqjfeoqhgt.supabase.co",
+  "region": "eu-west-1",
+  "configuredOn": "2026-10-29",
+  "localEnvFile": ".env.local",
+  "keys": "Publishable key only; stored in Git-ignored .env.local",
+  "applicationTables": 17,
+  "allApplicationTablesHaveRls": true,
+  "privateBuckets": [
+    "attachments",
+    "profile-media"
+  ],
+  "usersSeeded": 0,
+  "localMigrationToHostedName": [
+    {
+      "localFile": "20261028145621_relay_initial.sql",
+      "hostedName": "relay_initial"
+    },
+    {
+      "localFile": "20261028150906_authenticated_presence.sql",
+      "hostedName": "authenticated_presence"
+    },
+    {
+      "localFile": "20261028151406_unread_counts.sql",
+      "hostedName": "unread_counts"
+    },
+    {
+      "localFile": "20261028192954_thread_subscriptions.sql",
+      "hostedName": "thread_subscriptions"
+    },
+    {
+      "localFile": "20261028193207_durable_drafts.sql",
+      "hostedName": "durable_drafts"
+    },
+    {
+      "localFile": "20261028193249_private_profile_media.sql",
+      "hostedName": "private_profile_media"
+    },
+    {
+      "localFile": "20261028224253_realtime_epoch_revocation.sql",
+      "hostedName": "realtime_epoch_revocation"
+    },
+    {
+      "localFile": "20261029095248_foreign_key_indexes.sql",
+      "hostedName": "foreign_key_indexes"
+    }
+  ],
+  "limitations": [
+    "Dashboard Auth URL allowlist not verified",
+    "Realtime Allow public access is enabled; disable before launch",
+    "SMTP and real-user collaboration remain unverified",
+    "No hosting deployment"
+  ]
+}

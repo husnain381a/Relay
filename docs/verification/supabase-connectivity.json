@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-10-29T09:54:13.543Z",
+  "projectRef": "qiidmrxekvdqjfeoqhgt",
+  "checks": [
+    {
+      "name": "hosted Auth health",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "email authentication settings",
+      "passed": true,
+      "emailEnabled": true,
+      "confirmationRequired": true
+    },
+    {
+      "name": "anonymous tenant reads denied",
+      "passed": true,
+      "status": 401
+    },
+    {
+      "name": "anonymous workspace creation denied",
+      "passed": true,
+      "status": 401
+    },
+    {
+      "name": "anonymous private Realtime denied",
+      "passed": true,
+      "status": "CHANNEL_ERROR"
+    }
+  ],
+  "publicChannelsAllowed": true,
+  "publicChannelStatus": "SUBSCRIBED",
+  "note": "No user accounts, workspaces, messages or files were created. Authenticated collaboration remains untested."
+}

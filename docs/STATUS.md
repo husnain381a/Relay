@@ -1,6 +1,6 @@
 # Relay delivery status
 
-Updated 2026-10-29 (Asia/Karachi). **The local build is ready for handoff; production release is not complete.** The dedicated Supabase URL/key have not been supplied, Vercel is not connected, and no existing project was modified. Supabase rejected the approved free project's creation because of its active-project quota.
+Updated 2026-10-29 (Asia/Karachi). **The app is connected to the dedicated Relay backend; production release is not complete.** Eight migrations are applied to relay-web (qiidmrxekvdqjfeoqhgt), local public configuration is saved, and the configured production build passes. Hosted Auth/public-key and anonymous authorization checks pass. See [BACKEND.md](BACKEND.md) for the remaining dashboard settings and exact evidence. Vercel remains unconnected.
 
 ## Verified results
 
@@ -8,9 +8,10 @@ Updated 2026-10-29 (Asia/Karachi). **The local build is ready for handoff; produ
 | --- | --- |
 | TypeScript / production build | Pass; Next.js 16.4.3 webpack |
 | Unit/service tests | 98 pass across 12 files |
-| Database | 45 authorization/persistence groups pass across all 7 migrations in PGlite PostgreSQL |
+| Database | 45 authorization/persistence groups pass across all 8 migrations in PGlite PostgreSQL |
 | Browser | 16 Edge checks pass: setup/responsiveness/contrast/keyboard, rich editor/Markdown/paste/retry IDs, actual raster decoding/resize/preview/rejection |
-| Hosted collaboration | 5 real-backend tests explicitly skipped without credentials; zero cloud passes claimed |
+| Hosted connectivity | 5 public-key checks pass: Auth health/settings, anonymous table/RPC/private-channel denial; public channels still allowed |
+| Hosted collaboration | 5 authenticated collaboration tests remain unrun; no real-user passes claimed |
 | Dependency audit | Zero known web production/development vulnerabilities at final audit |
 | Desktop | 8 security/vault tests pass; packaged sandbox/isolation/DPAPI smoke passed |
 | Installer | Unsigned x64 NSIS validation installer built; signing and clean-machine installation still pending |
@@ -36,7 +37,7 @@ PGlite executes actual application SQL, constraints, roles and RLS with Supabase
 
 ## Remaining release work and limits
 
-1. Supply and authorize the dedicated Supabase project; apply all seven migrations, configure private Realtime/Auth redirects/SMTP, run cloud advisors and the actual multi-user/Storage/socket suite.
+1. Disable public Realtime access, verify Auth callback URLs, configure SMTP and run the actual multi-user/Storage/socket suite. The dedicated project, all eight migrations, private buckets, local connection and hosted advisors are complete.
 2. Connect hosting, deploy and verify real workflows. Enable scheduler/monitoring/backups/retention. Logs and health checks exist; Sentry SDK/alert delivery remains unimplemented.
 3. Measure concurrency, query plans, accessibility and devices with real records. Latency/load budgets are targets, not achieved SLOs. Large histories need bounded thread-summary profiling.
 4. Configure aggregate storage quotas and orphan/retention automation; per-file limits and own-image cleanup already exist. Run restore drills.

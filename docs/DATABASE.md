@@ -2,7 +2,7 @@
 
 ## Implementation and verification state
 
-Six CLI-generated migrations create and extend the product:
+Eight CLI-generated migrations create and extend the product:
 
 - `20261028145621_relay_initial.sql`: product schema, indexes, constraints, RLS, attachments, RPCs, notifications and private Broadcast authorization.
 - `20261028150906_authenticated_presence.sql`: server-authenticated presence and removal of peer Broadcast/Presence writes.
@@ -13,9 +13,9 @@ Six CLI-generated migrations create and extend the product:
 
 They contain no sample users or messages. Thread subscription backfill uses existing authored records only.
 
-`node scripts/test-database.mjs` executes all seven complete migrations in PGlite (real PostgreSQL compiled to WASM), with compatibility shims only for Supabase-owned Auth, Storage and Realtime schemas. It runs 45 groups of positive and adversarial assertions. This validates PostgreSQL semantics, roles, grants, RLS and application SQL; it does **not** prove hosted Supabase Auth, Storage MIME enforcement, replication, WebSocket subscriptions, production concurrency, latency or backups.
+`node scripts/test-database.mjs` executes all eight complete migrations in PGlite (real PostgreSQL compiled to WASM), with compatibility shims only for Supabase-owned Auth, Storage and Realtime schemas. It runs 45 groups of positive and adversarial assertions. This validates PostgreSQL semantics, roles, grants, RLS and application SQL; it does **not** prove hosted Supabase Auth, Storage MIME enforcement, replication, WebSocket subscriptions, production concurrency, latency or backups.
 
-Cloud deployment is currently blocked by the connected organization's active-free-project quota. No existing project has been changed. Run Supabase security/performance advisors and the cloud integration suite after a dedicated project is available.
+All eight migrations are applied to the dedicated relay-web project in the Relay organization. Hosted advisors, all-table RLS and private bucket configuration were checked. Public-key Auth and anonymous denial checks pass; authenticated multi-user workflows remain unverified. See BACKEND.md for the exact project and pending dashboard configuration.
 
 ## Core model
 
@@ -132,4 +132,6 @@ Before production: apply on an isolated real Supabase project; generate SDK data
 
 Official documentation checked: [Realtime authorization](https://supabase.com/docs/guides/realtime/authorization), [database Broadcast](https://supabase.com/docs/guides/realtime/broadcast), [Storage access control](https://supabase.com/docs/guides/storage/security/access-control). The changelog was checked by the parent agent; the current prohibition on altering RLS for `realtime.messages` is respected.
 
-Final migration: `20261028224253_realtime_epoch_revocation.sql` adds versioned topics, revocation rotation, publication routing and escaped-username mention compatibility.
+Topic revocation migration: `20261028224253_realtime_epoch_revocation.sql` adds versioned topics, revocation rotation, publication routing and escaped-username mention compatibility.
+
+Hosted advisor migration: `20261029095248_foreign_key_indexes.sql` adds six covering foreign-key indexes. See verification/supabase-migrations.json for server-assigned migration versions.

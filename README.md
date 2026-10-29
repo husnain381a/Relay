@@ -2,7 +2,7 @@
 
 A Slack-inspired team messenger built with Next.js, TypeScript, Supabase and Electron. Original visual identity; no voice/video/screen sharing. Production code contains no sample accounts, workspaces or messages.
 
-**Status: implemented locally; not production released.** Supabase rejected creation of a dedicated free project because the organization administrator reached its two-active-free-project limit. No existing project was modified. The user elected to supply a dedicated project URL and publishable key; they are not present yet. Vercel is not connected. Hosted Auth, Storage, private WebSocket delivery, real multi-user journeys, load targets and signed Windows installation/update tests therefore remain unverified. See [feature status](docs/STATUS.md), not just passing local tests, when assessing readiness.
+**Status: connected to the dedicated Relay backend; not production released.** All eight migrations are applied to **relay-web** in the **Relay** organization, and the local app is configured. The production build and hosted public-key/authorization smoke checks pass. Dashboard Realtime public-channel access must still be disabled and Auth callback URLs verified; authenticated collaboration, SMTP, hosting and signed desktop qualification remain pending. See [backend configuration](docs/BACKEND.md) and [feature status](docs/STATUS.md).
 
 ## Run the web application
 

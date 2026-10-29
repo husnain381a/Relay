@@ -1,0 +1,36 @@
+{
+  "migrations": [
+    {
+      "version": "20261029094821",
+      "name": "relay_initial"
+    },
+    {
+      "version": "20261029094835",
+      "name": "authenticated_presence"
+    },
+    {
+      "version": "20261029094841",
+      "name": "unread_counts"
+    },
+    {
+      "version": "20261029094848",
+      "name": "thread_subscriptions"
+    },
+    {
+      "version": "20261029094917",
+      "name": "durable_drafts"
+    },
+    {
+      "version": "20261029094923",
+      "name": "private_profile_media"
+    },
+    {
+      "version": "20261029094929",
+      "name": "realtime_epoch_revocation"
+    },
+    {
+      "version": "20261029095306",
+      "name": "foreign_key_indexes"
+    }
+  ]
+}

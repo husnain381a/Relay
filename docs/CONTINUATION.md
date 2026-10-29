@@ -11,4 +11,4 @@ The local application now also includes:
 
 New SQL checks execute all migrations and verify private threads/drafts/media, exact unread counts, topic revocation and subsequent publication routing. Browser tests use explicitly development-gated editor/image fixtures and never simulate or write to a backend. Those fixture routes return not-found in production, even if their development enable flag is set.
 
-Hosted Auth/Storage/WebSockets, deployment, load testing and a signed Windows release still need the dedicated backend and infrastructure access. A successful local test suite is not evidence those services have been validated.
+The dedicated relay-web backend is now connected and all eight migrations are applied. Hosted Auth health/email settings and anonymous access denial checks pass. Authenticated Storage/WebSocket workflows, deployment, load testing and a signed Windows release still need validation and infrastructure access. See BACKEND.md. A successful local test suite is not evidence those services have been validated.
