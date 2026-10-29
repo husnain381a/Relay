@@ -2,9 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { PwaSupport } from "@/components/pwa-support";
 import "./globals.css";
 export const metadata: Metadata = {
-  title: "Relay · A little closer, even from afar",
+  title: "Relay · Good work starts with a conversation",
   description:
-    "A considered space for your team’s conversations, ideas, and everyday work.",
+    "A shared workspace for team conversations, project channels, threads, and files. Available on the web and as an installable app.",
   applicationName: "Relay",
   appleWebApp: { capable: true, title: "Relay", statusBarStyle: "default" },
   other: { "apple-mobile-web-app-capable": "yes" },

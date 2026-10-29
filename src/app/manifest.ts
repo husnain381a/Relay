@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Relay",
     short_name: "Relay",
     description:
-      "Your team's conversations, ideas, and everyday work, a little closer.",
+      "A shared workspace for team conversations, project channels, threads, and files. Available on the web and as an installable app.",
     lang: "en",
     start_url: "/",
     scope: "/",

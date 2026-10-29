@@ -46,5 +46,23 @@
     "tailwindcss": "4.3.3",
     "typescript": "7.0.2",
     "vitest": "5.0.5"
-  }
+  },
+  "description": "A shared workspace for team conversations, project channels, threads, and files. Available on the web and as an installable app.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/husnain381a/Relay.git"
+  },
+  "homepage": "https://github.com/husnain381a/Relay#readme",
+  "bugs": {
+    "url": "https://github.com/husnain381a/Relay/issues"
+  },
+  "keywords": [
+    "relay",
+    "team-chat",
+    "team-collaboration",
+    "messaging",
+    "workspaces",
+    "pwa"
+  ]
 }

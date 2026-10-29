@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="430" viewBox="0 0 1440 430" role="img" aria-labelledby="title desc">
+<title id="title">Relay — Good work starts with a conversation.</title>
+<desc id="desc">Relay branding with connected cards representing channels, messages, and threads.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#faf9f6"/><stop offset="1" stop-color="#efebfc"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-40%" width="160%" height="180%"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#302845" flood-opacity=".07"/></filter>
+</defs>
+<rect width="1440" height="430" rx="24" fill="url(#bg)"/>
+<circle cx="1165" cy="221" r="214" fill="none" stroke="#ddd5f2"/>
+<circle cx="1165" cy="221" r="153" fill="none" stroke="#ddd5f2" stroke-dasharray="3 9"/>
+<g transform="translate(76 54) scale(.25)"><rect width="256" height="256" rx="56" fill="#29263f"/><path d="M66 77h70c28 0 45 16 45 42 0 25-18 42-45 42H99v-27h37c10 0 16-5 16-15s-6-15-16-15H95v75H66z" fill="#fff"/><path d="M161 157h29v22h-29z" fill="#a5b4fc"/></g>
+<text x="157" y="105" fill="#302845" font-family="Segoe UI,Arial,sans-serif" font-size="52" font-weight="700" letter-spacing="-2">relay<tspan fill="#8069c8">.</tspan></text>
+<text x="76" y="218" fill="#302845" font-family="Georgia,serif" font-size="58" letter-spacing="-1.5">Good work starts</text>
+<text x="76" y="288" fill="#302845" font-family="Georgia,serif" font-size="58" letter-spacing="-1.5">with a conversation.</text>
+<text x="79" y="353" fill="#635b70" font-family="Segoe UI,Arial,sans-serif" font-size="20">A shared home for your team's conversations.</text>
+<path d="M1014 125L1182 222L1042 328" fill="none" stroke="#b7a8de" stroke-width="2"/>
+<g filter="url(#shadow)">
+  <rect x="915" y="74" width="231" height="91" rx="18" fill="#fff" stroke="#e4ddef"/>
+  <rect x="1090" y="174" width="263" height="100" rx="18" fill="#fff" stroke="#e4ddef"/>
+  <rect x="944" y="294" width="242" height="87" rx="18" fill="#fff" stroke="#e4ddef"/>
+</g>
+<rect x="935" y="95" width="47" height="47" rx="12" fill="#f0edfb"/>
+<path d="M951 106l-3 25m13-25-3 25m-13-17h23m-24 9h23" fill="none" stroke="#6753c4" stroke-width="2.5" stroke-linecap="round"/>
+<text x="998" y="125" fill="#302845" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="600">Channels</text>
+<rect x="1111" y="199" width="48" height="48" rx="12" fill="#eaf3ee"/>
+<path d="M1124 212h22v16h-13l-9 7z" fill="none" stroke="#42755d" stroke-width="2.4" stroke-linejoin="round"/>
+<text x="1175" y="230" fill="#302845" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="600">Messages</text>
+<rect x="966" y="314" width="46" height="46" rx="12" fill="#fcf0e7"/>
+<path d="M979 325h20m-20 9h20m-20 9h12" fill="none" stroke="#a66d41" stroke-width="2.5" stroke-linecap="round"/>
+<text x="1028" y="345" fill="#302845" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="600">Threads</text>
+<circle cx="1344" cy="99" r="6" fill="#a5b4a1"/><circle cx="873" cy="300" r="5" fill="#b5a5e1"/><circle cx="1252" cy="357" r="4" fill="#c8a789"/>
+</svg>
