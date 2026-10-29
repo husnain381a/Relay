@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#302845" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Relay · You’re offline</title>
+    <link rel="icon" href="/icons/relay.svg" type="image/svg+xml" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        display: grid;
+        place-items: center;
+        background: #faf9f6;
+        color: #282634;
+        font:
+          16px/1.6 system-ui,
+          sans-serif;
+        padding: max(24px, env(safe-area-inset-top)) 24px
+          max(24px, env(safe-area-inset-bottom));
+      }
+      main {
+        max-width: 440px;
+        text-align: center;
+      }
+      img {
+        border-radius: 22px;
+      }
+      small {
+        display: block;
+        letter-spacing: 0.15em;
+        font-size: 11px;
+        font-weight: 700;
+        color: #706678;
+        margin: 28px 0 12px;
+      }
+      h1 {
+        font:
+          400 clamp(36px, 8vw, 48px)/1.15 Georgia,
+          serif;
+        letter-spacing: -1.5px;
+        margin: 0 0 18px;
+      }
+      p {
+        color: #65616d;
+        margin: 0 0 28px;
+      }
+      a {
+        display: inline-flex;
+        min-height: 48px;
+        align-items: center;
+        padding: 10px 24px;
+        border-radius: 9px;
+        background: #5c4bc4;
+        color: white;
+        font-weight: 650;
+        text-decoration: none;
+      }
+      a:focus-visible {
+        outline: 3px solid #8774ce;
+        outline-offset: 4px;
+      }
+      .note {
+        font-size: 13px;
+        margin: 24px 0 0;
+      }
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: #19191e;
+          color: #eeeef2;
+        }
+        p,
+        small {
+          color: #adaebb;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <img src="/icons/relay-192.png" width="80" height="80" alt="Relay" />
+      <small>A LITTLE CLOSER, SOON</small>
+      <h1>You’re offline.</h1>
+      <p>
+        Reconnect to pick up the conversation. Your workspace will be here when
+        you’re back.
+      </p>
+      <a href="/">Try again</a>
+      <p class="note">
+        For your privacy, conversations and files aren’t stored in this offline
+        screen.
+      </p>
+    </main>
+  </body>
+</html>

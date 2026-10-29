@@ -12,6 +12,8 @@ The authenticated Playwright suite and load exercise are included but have **not
 
 ## Commands
 
+PWA verification: run `npm run build` followed by `npm run test:pwa` before starting the development-server suite. Eleven production Edge checks pass; the real worker/cache/offline paths are exercised, while install prompts, iOS identity and waiting-worker UI use explicit browser-test adapters. See [PWA verification](PWA.md) for exact limits.
+
 The workspace-startup relationship fix has 10 explicit hosted PostgREST checks: the former saved-message embed reproduces PGRST201, and nine actual service query paths resolve their explicit foreign-key joins before correctly denying anonymous reads. These checks create no users or application records and do not claim authenticated journey coverage. Run with the configured project's public key:
 
 ```powershell

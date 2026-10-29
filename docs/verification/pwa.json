@@ -1,0 +1,48 @@
+{
+  "checkedOn": "2026-10-29",
+  "productionBuild": "passed",
+  "browser": "Microsoft Edge via Playwright",
+  "productionPwaTestsPassed": 11,
+  "manifest": {
+    "name": "Relay",
+    "id": "/",
+    "display": "standalone",
+    "scope": "/"
+  },
+  "iconsVerifiedPixels": [
+    192,
+    512,
+    180
+  ],
+  "maskableIcon": true,
+  "installEventCases": [
+    "accepted",
+    "dismissed",
+    "rejected",
+    "appinstalled"
+  ],
+  "mobileGuidanceAndFocusRestore": "passed with simulated iOS platform",
+  "standaloneAndNativeShellSuppression": "passed with simulated platform state",
+  "offlineNavigation": "passed with real service worker and offline browser context",
+  "publicCacheEntries": 6,
+  "apiAndAuthNetworkBypass": "passed",
+  "privateResponsesCached": false,
+  "updateConsentUi": "passed with simulated waiting worker",
+  "nativeOsInstallationPerformed": false,
+  "iosDeviceInstallationPerformed": false,
+  "httpsDeploymentPerformed": false,
+  "unitTestsPassed": 98,
+  "responsiveWidths": [
+    375,
+    768,
+    1440
+  ],
+  "typecheck": "passed",
+  "developmentRegression": {
+    "passed": 15,
+    "failed": 1,
+    "hostedSkipped": 5,
+    "issue": "Intermittent development startup/script error; Next dev server logged JSON parsing failures. Production suite passes.",
+    "resolved": false
+  }
+}

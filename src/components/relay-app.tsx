@@ -46,6 +46,7 @@ import { WorkspaceDialogs, type DialogType } from "./workspace-dialogs";
 import { CollectionView, SearchDialog } from "./collections";
 import type { MessageAction } from "./message-card";
 import { PrivateMediaImage } from "./media-settings";
+import { InstallAppButton } from "./pwa-support";
 
 export function RelayApp() {
   const [boot, setBoot] = useState(true);
@@ -646,6 +647,7 @@ export function RelayApp() {
           <kbd>Ctrl K</kbd>
         </button>
         <div className="topbar-actions">
+          <InstallAppButton />
           <IconButton
             label="Keyboard shortcuts"
             onClick={() => setDialog("shortcuts")}

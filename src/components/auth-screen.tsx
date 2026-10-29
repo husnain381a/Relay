@@ -13,6 +13,7 @@ import {
 import { signIn, signUp, requestPasswordReset } from "@/lib/auth";
 import { isSupabaseConfigured } from "@/lib/env";
 import { Field, TaskForm } from "./ui";
+import { InstallAppButton } from "./pwa-support";
 
 export function AuthScreen() {
   const [mode, setMode] = useState<"signin" | "signup" | "reset">("signin");
@@ -20,6 +21,9 @@ export function AuthScreen() {
   const configured = isSupabaseConfigured();
   return (
     <main className="auth-page">
+      <div className="auth-install">
+        <InstallAppButton />
+      </div>
       <a className="auth-brand" href="/">
         <span className="brand-mark">
           r<span />

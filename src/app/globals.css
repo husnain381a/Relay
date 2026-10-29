@@ -1,4 +1,155 @@
 @import "tailwindcss";
+/* Installation is progressive: no control appears until the browser can help. */
+.auth-install {
+  position: absolute;
+  top: 36px;
+  right: 5.5%;
+  z-index: 3;
+}
+.pwa-install-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 9px;
+  background: var(--surface-raised);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+.pwa-install-button:hover:not(:disabled) {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+.topbar .pwa-install-button {
+  min-height: 36px;
+  padding: 0 11px;
+  color: #fff;
+  background: #ffffff0c;
+  border-color: #ffffff40;
+}
+.topbar .pwa-install-button:hover:not(:disabled) {
+  background: #ffffff20;
+}
+.pwa-install-guide {
+  display: grid;
+  gap: 20px;
+  padding: 6px 0;
+}
+.pwa-install-guide > img {
+  border-radius: 16px;
+}
+.pwa-install-guide > p {
+  line-height: 1.6;
+}
+.pwa-install-guide ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 18px;
+}
+.pwa-install-guide li {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  line-height: 1.6;
+}
+.pwa-install-guide li > svg {
+  margin-top: 3px;
+  color: var(--accent);
+}
+.pwa-step-number {
+  flex: 0 0 19px;
+  text-align: center;
+  color: var(--accent);
+  font-weight: 750;
+}
+.pwa-install-guide .pwa-guide-note {
+  color: var(--muted);
+  font-size: 12px;
+}
+.pwa-update-notice {
+  position: fixed;
+  left: 50%;
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100% - 32px);
+  z-index: 160;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--surface-raised);
+  color: var(--text);
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  font-size: 12px;
+}
+.pwa-update-notice strong,
+.pwa-update-notice span {
+  display: block;
+}
+.pwa-update-notice span {
+  margin-top: 3px;
+  color: var(--muted);
+}
+.pwa-update-button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 650;
+}
+.pwa-dismiss {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  min-height: 44px;
+  border-radius: 8px;
+}
+.pwa-dismiss:hover {
+  background: var(--surface-hover);
+}
+@media (max-width: 600px) {
+  .auth-install {
+    top: 22px;
+    right: 20px;
+  }
+  .auth-install .pwa-install-button {
+    padding: 0 10px;
+  }
+  .topbar .pwa-install-button {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+  }
+  .topbar .pwa-install-button > span {
+    display: none;
+  }
+  .pwa-update-notice {
+    gap: 6px;
+    padding: 10px;
+  }
+}
+@media (display-mode: standalone) {
+  .app-shell {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right)
+      env(safe-area-inset-bottom) env(safe-area-inset-left);
+    background: var(--topbar);
+    overscroll-behavior: none;
+  }
+}
 @theme {
   --font-sans: "Segoe UI", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
 }

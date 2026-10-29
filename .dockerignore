@@ -11,6 +11,7 @@ work
 docs
 test-results
 playwright-report
+playwright-pwa-report
 coverage
 supabase/.temp
 .env*

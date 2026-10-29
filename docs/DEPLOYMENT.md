@@ -113,6 +113,8 @@ Docker is not installed in the development environment, so this container has no
 
 ## CI and final promotion
 
+PWA assets and standalone preparation are documented in [PWA.md](PWA.md). Serve the final app over HTTPS, preserve the `/sw.js` no-store headers and root scope, and include all public icons and the offline page. CI runs the production PWA suite before the development browser suite; native OS and iPhone/Safari installation still need validation on the deployed origin.
+
 `.github/workflows/ci.yml` checks type generation/typecheck, unit tests, PGlite authorization tests, production build, setup/responsive/keyboard browser tests using the Windows runner's installed Edge, and desktop source tests. Official action references are pinned to verified commit hashes. Pull requests receive no deployment or backend-test secrets.
 
 The `cloud-integration` job runs only through `workflow_dispatch` with `run_cloud_tests=true` and an `integration` environment containing `TEST_SUPABASE_URL`, a **publishable** `TEST_SUPABASE_KEY`, and two existing test accounts (`TEST_USER_A_EMAIL/PASSWORD`, `TEST_USER_B_EMAIL/PASSWORD`). A third account is optional. Protect that environment with required reviewers. This explicit run creates `[e2e]` workspaces/messages in the dedicated backend and leaves the workspace for failure inspection; it never provisions or deletes user accounts. Authenticated traces and sessions are not uploaded.

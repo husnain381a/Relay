@@ -9,7 +9,8 @@ Updated 2026-10-29 (Asia/Karachi). **The app is connected to the dedicated Relay
 | TypeScript / production build | Pass; Next.js 16.4.3 webpack |
 | Unit/service tests | 98 pass across 12 files |
 | Database | 45 authorization/persistence groups pass across all 8 migrations in PGlite PostgreSQL |
-| Browser | 16 Edge checks pass: setup/responsiveness/contrast/keyboard, rich editor/Markdown/paste/retry IDs, actual raster decoding/resize/preview/rejection |
+| Production PWA | 11 Edge checks pass, including 375/768/1440px layouts, install events, metadata, real offline worker and cache privacy |
+| Development browser suite | Latest full run: 15 pass, 1 intermittent startup failure; five hosted journeys skipped. Dev server logged JSON parsing errors; production PWA checks pass. |
 | Hosted connectivity | 5 public-key checks pass: Auth health/settings, anonymous table/RPC/private-channel denial; public channels still allowed |
 | Hosted collaboration | 5 authenticated collaboration tests remain unrun; no real-user passes claimed |
 | Dependency audit | Zero known web production/development vulnerabilities at final audit |
@@ -20,6 +21,8 @@ Updated 2026-10-29 (Asia/Karachi). **The app is connected to the dedicated Relay
 PGlite executes actual application SQL, constraints, roles and RLS with Supabase-owned platform interfaces shimmed. Browser editor/image tests use explicitly development-gated fixtures without a backend. Neither proves hosted Auth/Storage/WebSocket behavior. Fixture routes return 404 in production.
 
 ## Implemented
+
+- Installable PWA: standalone manifest, branded/maskable/Apple icons, browser-triggered Install App control, iPhone/iPad instructions, production worker with public-only offline fallback and user-controlled updates. Eleven production Edge checks pass; real OS/iOS installation on a deployed HTTPS origin remains unverified. See [PWA.md](PWA.md).
 
 - Original responsive communication shell, workspace/channel rail, conversation and thread panels, search, light/dark/system themes, dialogs, shortcuts and recovery states.
 - Supabase signup/signin/confirmation/password recovery, verified SSR sessions and session controls.

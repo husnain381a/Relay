@@ -5,7 +5,7 @@
   "unitTests": 98,
   "databaseGroups": 45,
   "migrations": 8,
-  "browserPassed": 16,
+  "browserPassed": 15,
   "cloudTestsSkipped": 5,
   "desktopTests": 8,
   "dependencyKnownVulnerabilities": 0,
@@ -20,5 +20,8 @@
   "backendConfigured": true,
   "hostedPublicKeyChecks": 5,
   "hostedRelationshipChecks": 10,
-  "relationshipFix": "Explicit PostgREST foreign-key joins; original PGRST201 reproduced and corrected query paths verified"
+  "relationshipFix": "Explicit PostgREST foreign-key joins; original PGRST201 reproduced and corrected query paths verified",
+  "pwaBrowserPassed": 11,
+  "browserFailed": 1,
+  "developmentStartupIssue": "Intermittent JSON/script parsing in Next development mode; final production PWA checks pass"
 }

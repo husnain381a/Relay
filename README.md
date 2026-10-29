@@ -41,6 +41,8 @@ Open `http://127.0.0.1:3000`, create and confirm your account, create a workspac
 
 ## Verify
 
+Relay also supports browser installation with a standalone app window, an **Install App** control in supporting browsers, iPhone/iPad Home Screen guidance, and a privacy-preserving offline screen. See [PWA setup and verification](docs/PWA.md). Public mobile installation requires an HTTPS deployment.
+
 ```powershell
 npm run typecheck
 npm test

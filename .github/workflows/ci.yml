@@ -56,6 +56,9 @@ jobs:
         run: |
           $relayEdgePaths = @("${env:ProgramFiles(x86)}\Microsoft\Edge\Application\msedge.exe", "$env:ProgramFiles\Microsoft\Edge\Application\msedge.exe")
           if (-not ($relayEdgePaths | Where-Object { Test-Path -LiteralPath $_ })) { throw 'This workflow expects Microsoft Edge on the Windows runner. Use a Windows image with Edge or explicitly install Playwright msedge.' }
+      # Run against the production build before the dev suite rewrites .next.
+      - name: Production PWA installation and offline privacy checks
+        run: npm run test:pwa
       - name: Browser setup, responsive and keyboard smoke
         run: npm run test:e2e
       - name: Runtime dependency audit
@@ -67,6 +70,7 @@ jobs:
           name: web-test-evidence
           path: |
             playwright-report/
+            playwright-pwa-report/
             test-results/
             docs/screenshots/
           if-no-files-found: ignore

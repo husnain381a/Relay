@@ -29,6 +29,7 @@ export function Modal({
   onClose,
   children,
   wide = false,
+  onCloseAutoFocus,
 }: {
   title: string;
   description?: string;
@@ -36,6 +37,7 @@ export function Modal({
   onClose: () => void;
   children: React.ReactNode;
   wide?: boolean;
+  onCloseAutoFocus?: (event: Event) => void;
 }) {
   return (
     <Dialog.Root
@@ -49,6 +51,7 @@ export function Modal({
         <Dialog.Content
           className={`modal ${wide ? "wide" : ""}`}
           aria-describedby={description ? undefined : undefined}
+          onCloseAutoFocus={onCloseAutoFocus}
         >
           <div className="modal-heading">
             <Dialog.Title>{title}</Dialog.Title>
