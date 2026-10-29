@@ -18,5 +18,7 @@
   ],
   "backendProject": "qiidmrxekvdqjfeoqhgt",
   "backendConfigured": true,
-  "hostedPublicKeyChecks": 5
+  "hostedPublicKeyChecks": 5,
+  "hostedRelationshipChecks": 10,
+  "relationshipFix": "Explicit PostgREST foreign-key joins; original PGRST201 reproduced and corrected query paths verified"
 }

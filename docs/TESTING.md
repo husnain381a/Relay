@@ -12,6 +12,16 @@ The authenticated Playwright suite and load exercise are included but have **not
 
 ## Commands
 
+The workspace-startup relationship fix has 10 explicit hosted PostgREST checks: the former saved-message embed reproduces PGRST201, and nine actual service query paths resolve their explicit foreign-key joins before correctly denying anonymous reads. These checks create no users or application records and do not claim authenticated journey coverage. Run with the configured project's public key:
+
+```powershell
+$env:RELAY_VERIFY_HOSTED_QUERIES='1'
+node --env-file=.env.local node_modules/vitest/vitest.mjs run tests/postgrest-relationships.test.ts
+Remove-Item Env:RELAY_VERIFY_HOSTED_QUERIES
+```
+
+They are skipped in ordinary `npm test`; the opt-in run against relay-web passed all ten.
+
 ```text
 npm ci
 npm run typecheck

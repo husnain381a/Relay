@@ -1,0 +1,14 @@
+{
+  "checkedOn": "2026-10-29",
+  "projectRef": "qiidmrxekvdqjfeoqhgt",
+  "originalBugReproduced": true,
+  "originalErrorCode": "PGRST201",
+  "originalPath": "savedIds workspace bootstrap: messages -> conversations",
+  "fix": "Explicit direct foreign-key hints in saved, pinned, scheduled, file and read-state embeds",
+  "hostedTestsPassed": 10,
+  "hostedQueryPathsVerified": 9,
+  "anonymousAccessStillDenied": true,
+  "authenticatedJourneyTested": false,
+  "databaseWrites": 0,
+  "unitTestsPassed": 98
+}

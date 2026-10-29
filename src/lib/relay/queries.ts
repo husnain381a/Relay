@@ -119,7 +119,9 @@ export function createQueries(getClient: ClientFactory) {
       if (!user) return [];
       const { data, error } = await getClient()
         .from("conversation_members")
-        .select("*, conversation:conversations!inner(workspace_id)")
+        .select(
+          "*, conversation:conversations!conversation_members_conversation_id_fkey!inner(workspace_id)",
+        )
         .eq("user_id", user.id)
         .eq("conversation.workspace_id", uuid.parse(workspaceId));
       checkError(error);
@@ -274,7 +276,7 @@ export function createQueries(getClient: ClientFactory) {
       let query = getClient()
         .from("saved_messages")
         .select(
-          `*, message:messages!inner(${MESSAGE_SELECT}, conversation:conversations!inner(workspace_id))`,
+          `*, message:messages!saved_messages_message_id_fkey!inner(${MESSAGE_SELECT}, conversation:conversations!messages_conversation_id_fkey!inner(workspace_id))`,
         );
       if (workspaceId)
         query = query.eq(
@@ -290,7 +292,7 @@ export function createQueries(getClient: ClientFactory) {
     async pins(conversationId: string): Promise<Pin[]> {
       const { data, error } = await getClient()
         .from("pins")
-        .select(`*, message:messages(${MESSAGE_SELECT})`)
+        .select(`*, message:messages!pins_message_id_fkey(${MESSAGE_SELECT})`)
         .eq("conversation_id", uuid.parse(conversationId))
         .order("created_at", { ascending: false });
       checkError(error);
@@ -316,7 +318,9 @@ export function createQueries(getClient: ClientFactory) {
     async scheduled(workspaceId?: string): Promise<ScheduledMessage[]> {
       let query = getClient()
         .from("scheduled_messages")
-        .select("*, conversation:conversations!inner(workspace_id)")
+        .select(
+          "*, conversation:conversations!scheduled_messages_conversation_id_fkey!inner(workspace_id)",
+        )
         .is("sent_at", null);
       if (workspaceId)
         query = query.eq("conversation.workspace_id", uuid.parse(workspaceId));
@@ -347,7 +351,9 @@ export function createQueries(getClient: ClientFactory) {
     async files(workspaceId: string, query = ""): Promise<Attachment[]> {
       let request = getClient()
         .from("attachments")
-        .select("*, conversation:conversations!inner(workspace_id)")
+        .select(
+          "*, conversation:conversations!attachments_conversation_id_fkey!inner(workspace_id)",
+        )
         .eq("conversation.workspace_id", uuid.parse(workspaceId));
       if (query) request = request.ilike("name", fileNamePattern(query));
       const { data, error } = await request

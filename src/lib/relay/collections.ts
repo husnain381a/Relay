@@ -30,7 +30,7 @@ export function createCollectionQueries(getClient: ClientFactory) {
       const { data, error } = await getClient()
         .from("saved_messages")
         .select(
-          `*, message:messages!inner(${MESSAGE_SELECT}, conversation:conversations!inner(workspace_id))`,
+          `*, message:messages!saved_messages_message_id_fkey!inner(${MESSAGE_SELECT}, conversation:conversations!messages_conversation_id_fkey!inner(workspace_id))`,
         )
         .eq("message.conversation.workspace_id", uuid.parse(workspaceId))
         .order("created_at", { ascending: false })
@@ -48,7 +48,7 @@ export function createCollectionQueries(getClient: ClientFactory) {
         let query = getClient()
           .from("saved_messages")
           .select(
-            "message_id, message:messages!inner(conversation:conversations!inner(workspace_id))",
+            "message_id, message:messages!saved_messages_message_id_fkey!inner(conversation:conversations!messages_conversation_id_fkey!inner(workspace_id))",
           )
           .eq("message.conversation.workspace_id", workspaceId)
           .order("message_id", { ascending: true })
@@ -91,7 +91,9 @@ export function createCollectionQueries(getClient: ClientFactory) {
       const page = pageOptions(options);
       const { data, error } = await getClient()
         .from("scheduled_messages")
-        .select("*, conversation:conversations!inner(workspace_id)")
+        .select(
+          "*, conversation:conversations!scheduled_messages_conversation_id_fkey!inner(workspace_id)",
+        )
         .eq("conversation.workspace_id", uuid.parse(workspaceId))
         .is("sent_at", null)
         .order("scheduled_at", { ascending: true })
@@ -108,7 +110,9 @@ export function createCollectionQueries(getClient: ClientFactory) {
       const page = pageOptions(options);
       let request = getClient()
         .from("attachments")
-        .select("*, conversation:conversations!inner(workspace_id)")
+        .select(
+          "*, conversation:conversations!attachments_conversation_id_fkey!inner(workspace_id)",
+        )
         .eq("conversation.workspace_id", uuid.parse(workspaceId));
       if (query.trim()) request = request.ilike("name", fileNamePattern(query));
       const { data, error } = await request
